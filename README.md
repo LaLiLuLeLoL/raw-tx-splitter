@@ -1,0 +1,2 @@
+# serialized-bitcoin-transaction
+Single class library and parses a serialized bitcoin transaction into a TypeScript / JavaScript class allowing you to quickly access relevant section of transaction. The attributes of the class are kept as serialised strings with the names denoting if they are Big Endian (BE) encoded or Little Endian encoding. Aim is for it to support the parsing of Legacy, Segwit v0 and Segwit v1 (Taproot) transaction
