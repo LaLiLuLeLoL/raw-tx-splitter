@@ -79,7 +79,7 @@ Note how each attribute (apart from arrays) is suffixed with either ```_LE``` or
 
 ![alt text](./docs/serialized_transaction_uml.jpg?raw=true "SerializedTransaction Data Model (UML)")
 
-Currently there is only a single method on this class which is ```getOutput()```, which provides a concatenation of PreviousOutput.transactionHash_LE + PreviousOutput.utxoIndex_LE. Outpoints are used as part of the message which gets signed as part of the segwit v0 and v1 (taproot) signature regimes. See BIP-0143 and BIP-0341 respectively.
+Currently there is only a single method on this class which is ```getOutpoint()```, which provides a concatenation of PreviousOutput.transactionHash_LE + PreviousOutput.utxoIndex_LE. Outpoints are used as part of the message which gets signed as part of the segwit v0 and v1 (taproot) signature regimes. See BIP-0143 and BIP-0341 respectively.
 
 ## How to use
 
