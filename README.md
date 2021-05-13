@@ -1,4 +1,4 @@
-# bitcoin-tx-splitter (Raw/Serialized Bitcoin Transaction Splitter)
+# raw-tx-splitter (Raw/Serialized Bitcoin Transaction Splitter)
 Single class library that parses and splits out the component fragments of a serialized bitcoin transaction into a TypeScript / JavaScript class. This allows developers to quickly access relevant section of transaction. The attributes of the classes are kept as serialised strings with each attribute names denoting if they are Big Endian (BE) encoded or Little-Endian (LE) encoded. Support legacy, segwit v0 and segwit v1 (taproot) Bitcoin transaction. 
 
 This library is NOT production ready and should be used only for educational purposes at this stage. Limitations include:
