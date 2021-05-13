@@ -61,7 +61,6 @@ export class SerializedTransaction {
         }
         if (hasSegwitInputs) {
             this.witnessesOfInputs = [];
-            console.log(readHeadIndex, serialStr.length - fragmentSizes.locktime_LE);
             while (readHeadIndex < serialStr.length - fragmentSizes.locktime_LE) {
                 let previousOutputWitnesses = {};
                 previousOutputWitnesses.noOfWitnesses_BE = getRawFragment(serialStr, fragmentSizes.noOfWitnesses_BE);

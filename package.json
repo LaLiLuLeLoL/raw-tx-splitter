@@ -1,20 +1,21 @@
 {
-  "name": "serialized-bitcoin-transaction",
+  "name": "raw-tx-splitter",
   "version": "0.0.1",
-  "description": "Single class library that parses a serialized bitcoin transaction into a TypeScript / JavaScript class allowing you to quickly access relevant section of transaction. The attributes of the class are kept as serialised strings with the names denoting if they are Big Endian (BE) encoded or Little Endian encoding. Aim is for it to support the parsing of Legacy, Segwit v0 and Segwit v1 (Taproot) transaction.",
+  "description": "Single class library that parses and splits out the component fragments of a serialized bitcoin transaction into a TypeScript / JavaScript class. This allows developers to quickly access relevant sections of transaction. The attributes of the class (SerializedTransaction) are kept as serialized strings with each attribute name denoting if they are Big Endian (BE) encoded or Little-Endian (LE) encoded. Supports legacy, segwit v0 and segwit v1 (taproot) Bitcoin transactions.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LaLiLuLeLoL/serialized-bitcoin-transaction.git"
+    "url": "git+https://github.com/LaLiLuLeLoL/raw-tx-splitter.git"
   },
   "keywords": [
     "bitcoin",
     "transaction",
     "tx",
     "serialization",
+    "raw transaction",
     "encoding",
     "segwit",
     "taproot"
@@ -22,9 +23,9 @@
   "author": "Andreas Cola (LaLiLuLeLoL)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LaLiLuLeLoL/serialized-bitcoin-transaction/issues"
+    "url": "https://github.com/LaLiLuLeLoL/raw-tx-splitter/issues"
   },
-  "homepage": "https://github.com/LaLiLuLeLoL/serialized-bitcoin-transaction#readme",
+  "homepage": "https://github.com/LaLiLuLeLoL/raw-tx-splitter#readme",
   "devDependencies": {
     "@types/jest": "^26.0.22",
     "jest": "^26.6.3",
