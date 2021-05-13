@@ -1,6 +1,7 @@
 import {fragmentSizes} from './reference_data/fragment_sizes'
 
 
+
 function isHex (stringToCheck: string): boolean {
     const hexRegEx: RegExp =  /[0-9A-Fa-f]{6}/g;
     return (hexRegEx.test(stringToCheck)) ? true : false;
@@ -53,7 +54,6 @@ export class SerializedTransaction {
     locktime_LE: string;
 
     constructor(serialStr: string) {
-
         
         serialStr = serialStr.trim().replace(/\s/g,'');
         if(!isHex(serialStr)) {
@@ -152,15 +152,11 @@ export class SerializedTransaction {
         const required_input = this.inputs[inputIndex];
         return required_input.transactionHash_LE + required_input.utxoIndex_LE;
     }
-
-    addWitness(witness:string) {
-        
-    }
     
 }
 
 
-const result = new SerializedTransaction("020000000001 0162ba7ef7f4ed7e7e1f2fbca227459e1246b565f6c262fdc3f720415d7d1a46d40000000000ffffffff0128230000000000001600140d8c371e13b8c463a2d69d5b4746ab1bc59edff6 01 40 000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f 00000000");
+const result = new SerializedTransaction("010000000001010000000000000000000000000000000000000000000000000000000000000000ffffffff4b03a46d0afabe6d6dfeba17a88567a66fc0c5c16f58a3938d5c5afec1d78411b5d99fd4a353c9e389010000000000000003650700407aa100000000000000007f728d7e022f736c7573682f0000000003b9dba028000000001976a9147c154ed1dc59609e3d26abb2df2ea3d587cd8c4188ac00000000000000002c6a4c2952534b424c4f434b3a201151f5975bfd2178987a51cd68050dab660cc3a8f4a14107b9fc130033115f0000000000000000266a24aa21a9edf461e1f10e6530fb1bbc57ae51ecd86893ec97269c33384985566ab6a139183c0120000000000000000000000000000000000000000000000000000000000000000000000000");
 console.log(result)
 result.witnessesOfInputs.forEach( (witness)=> {
     console.log(witness)
