@@ -12,13 +12,17 @@
   },
   "keywords": [
     "bitcoin",
+    "btc",
     "transaction",
     "tx",
     "serialization",
     "raw transaction",
     "encoding",
     "segwit",
-    "taproot"
+    "taproot",
+    "parser",
+    "splitter",
+    "decoder"
   ],
   "files": [
     "src"
