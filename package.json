@@ -20,6 +20,9 @@
     "segwit",
     "taproot"
   ],
+  "files": [
+    "src"
+  ],
   "author": "Andreas Cola (LaLiLuLeLoL)",
   "license": "MIT",
   "bugs": {
