@@ -1,4 +1,7 @@
-import { fragmentSizes } from './reference_data/fragment_sizes';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SerializedTransaction = void 0;
+const fragment_sizes_1 = require("./reference_data/fragment_sizes");
 function isHex(stringToCheck) {
     const hexRegEx = /[0-9A-Fa-f]{6}/g;
     return (hexRegEx.test(stringToCheck)) ? true : false;
@@ -9,7 +12,7 @@ function isSerialisedBitcoinTx(stringToCheck) {
         throw new Error('Input Error: Input is not a hex string');
     }
 }
-export class SerializedTransaction {
+class SerializedTransaction {
     constructor(serialStr) {
         serialStr = serialStr.trim().replace(/\s/g, '');
         if (!isHex(serialStr)) {
@@ -28,47 +31,47 @@ export class SerializedTransaction {
         }
         const hasSegwitInputs = (serialStr.substring(8, 10) === "00" && serialStr.substring(10, 12) === "01") ? true : false;
         if (hasSegwitInputs) {
-            this.segwitMarker_BE = getRawFragment(serialStr, fragmentSizes.segwitMarker_BE);
-            this.segwitFlag_BE = getRawFragment(serialStr, fragmentSizes.segwitFlag_BE);
+            this.segwitMarker_BE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.segwitMarker_BE);
+            this.segwitFlag_BE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.segwitFlag_BE);
         }
-        this.noOfInputs_BE = getRawFragment(serialStr, fragmentSizes.noOfInputs_BE);
+        this.noOfInputs_BE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.noOfInputs_BE);
         const noOfInputs_INT = parseInt(this.noOfInputs_BE, 16);
         this.inputs = [];
         for (let i = 0; i < noOfInputs_INT; i++) {
             let input = {};
-            input.transactionHash_LE = getRawFragment(serialStr, fragmentSizes.transactionHash_LE);
-            input.utxoIndex_LE = getRawFragment(serialStr, fragmentSizes.utxoIndex_LE);
-            const compact_size = getRawFragment(serialStr, fragmentSizes.compactSize_BE);
+            input.transactionHash_LE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.transactionHash_LE);
+            input.utxoIndex_LE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.utxoIndex_LE);
+            const compact_size = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.compactSize_BE);
             input.utxoScriptSigSizePrefix_BE = compact_size;
             if (parseInt(compact_size, 16) > 0) {
                 input.utxoScriptSig_BE = getRawFragment(serialStr, parseInt(compact_size, 16) * 2);
             }
-            input.utxoSequence_LE = getRawFragment(serialStr, fragmentSizes.utxoSequence_LE);
+            input.utxoSequence_LE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.utxoSequence_LE);
             this.inputs.push(input);
         }
-        this.noOfOutputs_BE = getRawFragment(serialStr, fragmentSizes.noOfOutputs_BE);
+        this.noOfOutputs_BE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.noOfOutputs_BE);
         const numberOfOutputs_INT = parseInt(this.noOfOutputs_BE, 16);
         //we work out the compact size of the script_pubbkey
         //so we know how big and therefore how much to slice out of the string
         this.outputs = [];
         for (let i = 0; i < numberOfOutputs_INT; i++) {
             let output = {};
-            output.outputSatoshis_LE = getRawFragment(serialStr, fragmentSizes.outputSatoshis_LE);
-            const compact_size = getRawFragment(serialStr, fragmentSizes.compactSize_BE);
+            output.outputSatoshis_LE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.outputSatoshis_LE);
+            const compact_size = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.compactSize_BE);
             output.outputScriptPubkeySizePrefix_BE = compact_size;
             output.outputScriptPubkey_BE = getRawFragment(serialStr, parseInt(compact_size, 16) * 2);
             this.outputs.push(output);
         }
         if (hasSegwitInputs) {
             this.witnessesOfInputs = [];
-            while (readHeadIndex < serialStr.length - fragmentSizes.locktime_LE) {
+            while (readHeadIndex < serialStr.length - fragment_sizes_1.fragmentSizes.locktime_LE) {
                 let previousOutputWitnesses = {};
-                previousOutputWitnesses.noOfWitnesses_BE = getRawFragment(serialStr, fragmentSizes.noOfWitnesses_BE);
+                previousOutputWitnesses.noOfWitnesses_BE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.noOfWitnesses_BE);
                 const noOfWitnesses_INT = parseInt(previousOutputWitnesses.noOfWitnesses_BE);
                 previousOutputWitnesses.witnesses = [];
                 for (let i = 0; i < noOfWitnesses_INT; i++) {
                     let previousOutputWitness = {};
-                    const compact_size = getRawFragment(serialStr, fragmentSizes.compactSize_BE);
+                    const compact_size = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.compactSize_BE);
                     previousOutputWitness.witnessSizePrefix_BE = compact_size;
                     previousOutputWitness.witness_BE = getRawFragment(serialStr, parseInt(compact_size, 16) * 2);
                     previousOutputWitnesses.witnesses.push(previousOutputWitness);
@@ -76,10 +79,11 @@ export class SerializedTransaction {
                 this.witnessesOfInputs.push(previousOutputWitnesses);
             }
         }
-        this.locktime_LE = getRawFragment(serialStr, fragmentSizes.locktime_LE); //serialStr.slice(serialStr.length - fragmentSizes.locktime_LE)
+        this.locktime_LE = getRawFragment(serialStr, fragment_sizes_1.fragmentSizes.locktime_LE); //serialStr.slice(serialStr.length - fragmentSizes.locktime_LE)
     }
     getOutpoint(inputIndex) {
         const required_input = this.inputs[inputIndex];
         return required_input.transactionHash_LE + required_input.utxoIndex_LE;
     }
 }
+exports.SerializedTransaction = SerializedTransaction;

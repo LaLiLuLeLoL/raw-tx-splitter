@@ -1,0 +1,1 @@
+export {SerializedTransaction} from './serialized_transaction';

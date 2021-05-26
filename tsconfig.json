@@ -2,7 +2,11 @@
   "compilerOptions": {
     "outDir": "./src",
     "allowJs": true,
-    "target": "esnext", //esnext
+    "target": "ES2015",
+    "module": "commonjs",
+    "types": [
+      "node"
+    ],
     "watch": true,
     "esModuleInterop": true,
   },

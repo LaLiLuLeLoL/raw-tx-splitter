@@ -1,5 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.fragmentSizes = void 0;
 //sizes are in byte x2
-export var fragmentSizes;
+var fragmentSizes;
 (function (fragmentSizes) {
     fragmentSizes[fragmentSizes["transactionHash_LE"] = 64] = "transactionHash_LE";
     fragmentSizes[fragmentSizes["utxoIndex_LE"] = 8] = "utxoIndex_LE";
@@ -13,4 +16,4 @@ export var fragmentSizes;
     fragmentSizes[fragmentSizes["noOfOutputs_BE"] = 2] = "noOfOutputs_BE";
     fragmentSizes[fragmentSizes["noOfWitnesses_BE"] = 2] = "noOfWitnesses_BE";
     fragmentSizes[fragmentSizes["locktime_LE"] = 8] = "locktime_LE";
-})(fragmentSizes || (fragmentSizes = {}));
+})(fragmentSizes = exports.fragmentSizes || (exports.fragmentSizes = {}));
