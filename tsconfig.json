@@ -5,7 +5,8 @@
     "target": "ES2015",
     "module": "commonjs",
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "watch": true,
     "esModuleInterop": true,
