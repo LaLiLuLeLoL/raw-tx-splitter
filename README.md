@@ -1,4 +1,6 @@
 # raw-tx-splitter (Raw/Serialized Bitcoin Transaction Splitter)
+![npm](https://img.shields.io/npm/v/raw-tx-splitter)
+
 Single class library that parses and splits out the component fragments of a serialized bitcoin transaction into a TypeScript / JavaScript class. This allows developers to quickly access relevant sections of transaction. The attributes of the class (SerializedTransaction) are kept as serialized strings with each attribute name denoting if they are Big Endian (BE) encoded or Little-Endian (LE) encoded. Supports legacy, segwit v0 and segwit v1 (taproot) Bitcoin transactions.
 
 ## Example use
